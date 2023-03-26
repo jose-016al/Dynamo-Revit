@@ -1,0 +1,1 @@
+![filtros](../../img/interfacesGraficas.png)
