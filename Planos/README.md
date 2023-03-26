@@ -1,1 +1,1 @@
-![filtros](../img/filtros.png)
+![filtros](../img/planos.png)
