@@ -1,0 +1,797 @@
+{
+  "Uuid": "5d32c495-aa2d-4a4b-8cd6-2a3757a07a2a",
+  "IsCustomNode": false,
+  "Description": "Modelado de los acabados del suelo",
+  "Name": "Modelado acabados de suelo",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [
+    {
+      "Id": "774dfe801a74492eab868c5040796fc0",
+      "Name": "Tipos de suelo",
+      "Type": "dropdownSelection",
+      "Value": "Con bovedilla cerámica - 30 cm",
+      "Description": "Todos los tipos de suelo disponibles en el documento",
+      "SelectedIndex": 0
+    },
+    {
+      "Id": "21d34691707f4d8daa223e30294ae1ca",
+      "Name": "Selecciona la planta",
+      "Type": "dropdownSelection",
+      "Value": "Nivel 1",
+      "Description": "Selecciona un nivel en el documento activo",
+      "SelectedIndex": 0
+    },
+    {
+      "Id": "8896701549314711b9917c4248f88f83",
+      "Name": "¿Desfase automatico?",
+      "Type": "boolean",
+      "Value": "true",
+      "Description": "Selección entre True y False",
+      "SelectedIndex": 0
+    },
+    {
+      "Id": "b83f7a562e6d49098617c1cd8e44376c",
+      "Name": "Desfase personalizado",
+      "Type": "number",
+      "Value": "0",
+      "NumberType": "Double",
+      "Description": "Crea un número",
+      "SelectedIndex": 0
+    },
+    {
+      "Id": "d7a6a5ec15ab40f4b3857c098fab1ddc",
+      "Name": "Selecciona las habitaciones",
+      "Type": "hostSelection",
+      "Value": "",
+      "Description": "Seleccione varios elementos del documento de Revit filtrados por categoría.",
+      "SelectedIndex": 0
+    }
+  ],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "archilab.Revit.Elements.Room.Boundaries@Revit.Elements.Element,string",
+      "Id": "65f7eb17a51241f5b39b73dacd61f371",
+      "Inputs": [
+        {
+          "Id": "57e4a83467c145d6a12745901b52e70f",
+          "Name": "room",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "720a761aa1914b0abf558300fb4f8d7d",
+          "Name": "boundaryLocation",
+          "Description": "string\nValor por defecto : \"Center\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1dcbbcb73b4f406f9ed1453b9da5b253",
+          "Name": "Elements",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d5d9ee379fa24a3e8637f8ccf96b9071",
+          "Name": "Curves",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Room.Boundaries (room: Element, boundaryLocation: string = \"Center\"): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "Finish",
+      "Id": "1d78e5d7a1b645fc87d9639dc1b68c02",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6c553de0c61f4df88f66e65d3e388d9e",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Crea una cadena"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Floor.ByOutlineTypeAndLevel@Autodesk.DesignScript.Geometry.Curve[],Revit.Elements.FloorType,Revit.Elements.Level",
+      "Id": "a6b5fac58f6b427da845347854ed0ad7",
+      "Inputs": [
+        {
+          "Id": "254a827f72574b8cabaeec3b58cc1323",
+          "Name": "outlineCurves",
+          "Description": "Curve[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f7f13d28a8c74f3bb364411e7485bbd0",
+          "Name": "floorType",
+          "Description": "FloorType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b4e3f4f44f564940905beb2065375747",
+          "Name": "level",
+          "Description": "Level",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b3f523523bbe45e08b970a86bfc57327",
+          "Name": "Floor",
+          "Description": "El suelo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Crea un suelo de Revit según su contorno de curva y nivel.\n\nFloor.ByOutlineTypeAndLevel (outlineCurves: Curve[], floorType: FloorType, level: Level): Floor"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "Grosor predeterminado",
+      "Id": "e915ffbde492432e9750d4e398aa6ac4",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6655136c3dc7492ca6317914fc5946ed",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Crea una cadena"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.GetParameterValueByName@string",
+      "Id": "cdb8e173e150410d87eac5bf87c6dbc2",
+      "Inputs": [
+        {
+          "Id": "a6568526bb5f4eef8d6f6ab24f5f42e0",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c36e405f108648d1a9840bf65420e295",
+          "Name": "parameterName",
+          "Description": "El nombre del parámetro cuyo valor desea obtener.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ef200dcd82fc44888d8492ec2273c362",
+          "Name": "var[]..[]",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Obtiene el valor de uno de los parámetros del elemento.\n\nElement.GetParameterValueByName (parameterName: string): var[]..[]"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.FloorTypes, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "Con bovedilla cerámica - 30 cm",
+      "NodeType": "ExtensionNode",
+      "Id": "774dfe801a74492eab868c5040796fc0",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "970ab86d24f646d89dace86317b0ed38",
+          "Name": "Floor Type",
+          "Description": "Floor Type seleccionado",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Todos los tipos de suelo disponibles en el documento"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Levels, DSRevitNodesUI",
+      "SelectedIndex": 0,
+      "SelectedString": "Nivel 1",
+      "NodeType": "ExtensionNode",
+      "Id": "21d34691707f4d8daa223e30294ae1ca",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "075307848a7843a6a2219804bda15e6f",
+          "Name": "Levels",
+          "Description": "Levels seleccionado",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selecciona un nivel en el documento activo"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Logic.RefactoredIf, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "96dd97bdb54641eaa842a9700cef8568",
+      "Inputs": [
+        {
+          "Id": "4d371e7b4e3641f0abee8f853ddeda10",
+          "Name": "test",
+          "Description": "Prueba de valores booleanos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1c142489bd474a6aa8383ba8df182937",
+          "Name": "true",
+          "Description": "Se devuelve si la prueba es \"true\" (verdadera).",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "017d7a0c7528434f96fb6c2edc6e0859",
+          "Name": "false",
+          "Description": "Se devuelve si la prueba es \"false\" (falsa).",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "28d09cdb6d864ccca1ed65e765fe3b9e",
+          "Name": "result",
+          "Description": "Bloque de resultados generado",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Devuelve el resultado de la entrada \"True\" (verdadero) o \"False\" (falso) según el valor booleano que se alterne en la entrada de prueba. Admite la recursividad que requiere que solo se ejecute una ramificación. Es fundamental que las ramificaciones \"True\" (verdadero) y \"False\" (false) estén aisladas y no interactúen entre sí."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": true,
+      "Id": "8896701549314711b9917c4248f88f83",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c3baaff3bcc247c1be31c4e196f35069",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selección entre True y False"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 0.0,
+      "Id": "b83f7a562e6d49098617c1cd8e44376c",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0b80d3448cf842268ffc2c9ebe9def4e",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Crea un número"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.SetParameterByName@string,var",
+      "Id": "8544cf97c6a8492ca6c49aa6ab010177",
+      "Inputs": [
+        {
+          "Id": "6e044e99a8b541128556aed5483fe2d4",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "60f824ce5c2f4c92b4e6a3185a1233c2",
+          "Name": "parameterName",
+          "Description": "El nombre del parámetro que se debe definir.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e067ea33818449ebb62c01f7bb7e590c",
+          "Name": "value",
+          "Description": "El valor.\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1e3fd868907a4de4aa9d7459c4bc92b9",
+          "Name": "Element",
+          "Description": "Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Define uno de los parámetros del elemento.\n\nElement.SetParameterByName (parameterName: string, value: var): Element"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "Desfase de altura desde nivel",
+      "Id": "18cefdf17f33426096b0e73f73591e7a",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "36b28b1cb1c34ba4a9925b84b0c0ca98",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Crea una cadena"
+    },
+    {
+      "ConcreteType": "Dynamo.ComboNodes.DSModelElementsByCategorySelection, DSRevitNodesUI",
+      "SelectedIndex": 412,
+      "SelectedString": "OST_Rooms",
+      "NodeType": "ExtensionNode",
+      "InstanceId": [],
+      "Id": "d7a6a5ec15ab40f4b3857c098fab1ddc",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4a2f63ff447448bea27d252a8e5efa66",
+          "Name": "Elements",
+          "Description": "Los elementos seleccionados",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "d5d9ee379fa24a3e8637f8ccf96b9071",
+      "End": "254a827f72574b8cabaeec3b58cc1323",
+      "Id": "ceeb89d6885b400ea0226da1fd80778c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6c553de0c61f4df88f66e65d3e388d9e",
+      "End": "720a761aa1914b0abf558300fb4f8d7d",
+      "Id": "67476d66c876474d8f67ed3dc31e8476",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b3f523523bbe45e08b970a86bfc57327",
+      "End": "6e044e99a8b541128556aed5483fe2d4",
+      "Id": "172f1596d78f445989be58cf6523e6b7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6655136c3dc7492ca6317914fc5946ed",
+      "End": "c36e405f108648d1a9840bf65420e295",
+      "Id": "b30a12592c574c9fb930339539e792db",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "ef200dcd82fc44888d8492ec2273c362",
+      "End": "1c142489bd474a6aa8383ba8df182937",
+      "Id": "40fc56dc5a1141a18a67fe50530f4fe7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "970ab86d24f646d89dace86317b0ed38",
+      "End": "f7f13d28a8c74f3bb364411e7485bbd0",
+      "Id": "1f515a84f602422bbf4b146399263f7b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "970ab86d24f646d89dace86317b0ed38",
+      "End": "a6568526bb5f4eef8d6f6ab24f5f42e0",
+      "Id": "974b4df2cd5343f7a7b078cf71b1c84e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "075307848a7843a6a2219804bda15e6f",
+      "End": "b4e3f4f44f564940905beb2065375747",
+      "Id": "c556d0ebc14842639cb6bb1e1863717e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "28d09cdb6d864ccca1ed65e765fe3b9e",
+      "End": "e067ea33818449ebb62c01f7bb7e590c",
+      "Id": "7b3ec3129e0848bdab3551e1f043eb22",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c3baaff3bcc247c1be31c4e196f35069",
+      "End": "4d371e7b4e3641f0abee8f853ddeda10",
+      "Id": "5736db512aeb401bbef6517b25d918e3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0b80d3448cf842268ffc2c9ebe9def4e",
+      "End": "017d7a0c7528434f96fb6c2edc6e0859",
+      "Id": "09cc40a4e1f84a8a8a4afbf60655fb35",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "36b28b1cb1c34ba4a9925b84b0c0ca98",
+      "End": "60f824ce5c2f4c92b4e6a3185a1233c2",
+      "Id": "c2cad667de6d41c4ae961e955b00b228",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "4a2f63ff447448bea27d252a8e5efa66",
+      "End": "57e4a83467c145d6a12745901b52e70f",
+      "Id": "c4b1b5284112436882e2624c565e051d",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "archi-lab.net",
+      "Version": "2023.213.1722",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "65f7eb17a51241f5b39b73dacd61f371"
+      ]
+    }
+  ],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.13",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "2.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "Ninguno",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.13.1.3887",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Vista preliminar en segundo plano",
+      "EyeX": -15.098905563354492,
+      "EyeY": 35.984554290771484,
+      "EyeZ": 22.286109924316406,
+      "LookX": 5.7511091232299805,
+      "LookY": -33.094181060791016,
+      "LookZ": -27.797023773193359,
+      "UpX": 0.12193115055561066,
+      "UpY": 0.79863560199737549,
+      "UpZ": -0.58933359384536743
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Name": "Room.Boundaries",
+        "ShowGeometry": true,
+        "Id": "65f7eb17a51241f5b39b73dacd61f371",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 492.52964248019771,
+        "Y": 273.90218774608638
+      },
+      {
+        "Name": "String",
+        "ShowGeometry": true,
+        "Id": "1d78e5d7a1b645fc87d9639dc1b68c02",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 201.80360058922287,
+        "Y": 367.0674213832371
+      },
+      {
+        "Name": "Floor.ByOutlineTypeAndLevel",
+        "ShowGeometry": true,
+        "Id": "a6b5fac58f6b427da845347854ed0ad7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 991.44450311930314,
+        "Y": -162.42103627635177
+      },
+      {
+        "Name": "String",
+        "ShowGeometry": true,
+        "Id": "e915ffbde492432e9750d4e398aa6ac4",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 911.9354385357376,
+        "Y": 412.68061242296244
+      },
+      {
+        "Name": "Element.GetParameterValueByName",
+        "ShowGeometry": true,
+        "Id": "cdb8e173e150410d87eac5bf87c6dbc2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1198.1120455968698,
+        "Y": 303.64156433192636
+      },
+      {
+        "Name": "Tipos de suelo",
+        "ShowGeometry": true,
+        "Id": "774dfe801a74492eab868c5040796fc0",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 570.1509792071945,
+        "Y": -199.61920501283782
+      },
+      {
+        "Name": "Selecciona la planta",
+        "ShowGeometry": true,
+        "Id": "21d34691707f4d8daa223e30294ae1ca",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 578.8337508974422,
+        "Y": -74.201391709260434
+      },
+      {
+        "Name": "If",
+        "ShowGeometry": true,
+        "Id": "96dd97bdb54641eaa842a9700cef8568",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1648.2727822979414,
+        "Y": 514.10003807860369
+      },
+      {
+        "Name": "¿Desfase automatico?",
+        "ShowGeometry": true,
+        "Id": "8896701549314711b9917c4248f88f83",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1304.264739220193,
+        "Y": 472.70526356830237
+      },
+      {
+        "Name": "Desfase personalizado",
+        "ShowGeometry": true,
+        "Id": "b83f7a562e6d49098617c1cd8e44376c",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1299.3882994892938,
+        "Y": 622.36782983166313
+      },
+      {
+        "Name": "Element.SetParameterByName",
+        "ShowGeometry": true,
+        "Id": "8544cf97c6a8492ca6c49aa6ab010177",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1932.64368255329,
+        "Y": 279.79045313902759
+      },
+      {
+        "Name": "String",
+        "ShowGeometry": true,
+        "Id": "18cefdf17f33426096b0e73f73591e7a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1622.0838373164681,
+        "Y": 354.64597246928986
+      },
+      {
+        "Name": "Selecciona las habitaciones",
+        "ShowGeometry": true,
+        "Id": "d7a6a5ec15ab40f4b3857c098fab1ddc",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 125.06249629346422,
+        "Y": 193.37535502417256
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "f9d31597314d4118a0ddb1a887e69e66",
+        "Title": "1. Seleccionamos las habitaciones",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "65f7eb17a51241f5b39b73dacd61f371",
+          "1d78e5d7a1b645fc87d9639dc1b68c02",
+          "d7a6a5ec15ab40f4b3857c098fab1ddc"
+        ],
+        "HasNestedGroups": false,
+        "Left": 115.06249629346422,
+        "Top": 120.37535502417256,
+        "Width": 671.46714618673354,
+        "Height": 378.69206635906454,
+        "FontSize": 36.0,
+        "InitialTop": 193.37535502417256,
+        "InitialHeight": 318.69206635906454,
+        "TextblockHeight": 63.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "3978ac56e01b4fc98b87bb7364c61d3a",
+        "Title": "2. Filtramos el tipo de suelo y el nivel en el que se aplica",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "a6b5fac58f6b427da845347854ed0ad7",
+          "774dfe801a74492eab868c5040796fc0",
+          "21d34691707f4d8daa223e30294ae1ca"
+        ],
+        "HasNestedGroups": false,
+        "Left": 560.1509792071945,
+        "Top": -315.61920501283782,
+        "Width": 733.29352391210864,
+        "Height": 373.41781330357742,
+        "FontSize": 36.0,
+        "InitialTop": -199.61920501283782,
+        "InitialHeight": 270.41781330357742,
+        "TextblockHeight": 106.0,
+        "Background": "#FF48B9FF"
+      },
+      {
+        "Id": "a885a109f14941c7927c081d4451dc02",
+        "Title": "3. Personalizacion del desfase",
+        "DescriptionText": "",
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "e915ffbde492432e9750d4e398aa6ac4",
+          "cdb8e173e150410d87eac5bf87c6dbc2",
+          "96dd97bdb54641eaa842a9700cef8568",
+          "8896701549314711b9917c4248f88f83",
+          "b83f7a562e6d49098617c1cd8e44376c",
+          "8544cf97c6a8492ca6c49aa6ab010177",
+          "18cefdf17f33426096b0e73f73591e7a"
+        ],
+        "HasNestedGroups": false,
+        "Left": 901.9354385357376,
+        "Top": 206.79045313902759,
+        "Width": 1343.7082440175525,
+        "Height": 547.57737669263554,
+        "FontSize": 36.0,
+        "InitialTop": 279.79045313902759,
+        "InitialHeight": 472.59518647109121,
+        "TextblockHeight": 63.0,
+        "Background": "#FF71C6A8"
+      }
+    ],
+    "X": -858.85164783651067,
+    "Y": -172.21842236390717,
+    "Zoom": 0.92751270579967671
+  }
+}
